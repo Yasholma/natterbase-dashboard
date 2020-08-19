@@ -1,0 +1,64 @@
+@import "../../mixins/variables";
+@import "../../mixins/transitions";
+
+// Notification
+.notification {
+  position: fixed;
+  bottom: 0;
+  z-index: 1001;
+  width: 100%;
+  @include transition(all 0.3s ease-in-out);
+
+  &.close {
+    visibility: hidden;
+  }
+
+  &__alert {
+    height: 68px;
+    text-align: center;
+    display: grid;
+    place-content: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+
+    &--success {
+      background: linear-gradient(0deg, #4dbd98, #4dbd98),
+        linear-gradient(0deg, #4dbd98, #4dbd98),
+        linear-gradient(0deg, #4dbd98, #4dbd98), #4dbd98;
+      color: $whiteColor;
+    }
+
+    &--warning {
+      background: $warning;
+      color: $whiteColor;
+    }
+
+    &--danger {
+      background: $danger;
+      color: $whiteColor;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .notification {
+    position: fixed;
+    bottom: 0;
+    z-index: 1001;
+    width: 100%;
+    @include transition(all 0.3s ease-in-out);
+
+    &.close {
+      visibility: hidden;
+    }
+
+    &__alert {
+      height: 68px;
+      text-align: center;
+      display: grid;
+      place-content: center;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+  }
+}

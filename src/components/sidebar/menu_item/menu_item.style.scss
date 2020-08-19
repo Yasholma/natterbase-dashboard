@@ -1,0 +1,33 @@
+@import "../../../mixins/variables";
+@import "../../../mixins/transitions";
+$activeLink: #23b3e8;
+
+.sidebar__menu__item {
+  margin-bottom: 3rem;
+}
+
+.sidebar__menu__link {
+  @include transition(all 0.3s ease);
+
+  &--active,
+  &:hover {
+    background: $activeLink;
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+  }
+}
+
+.sidebar__menu__icon {
+  width: 18px;
+}
+
+.sidebar__menu__title {
+  margin-left: 0.5rem;
+  display: inline-block;
+  color: $whiteColor;
+  font-weight: 400;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  align-self: center;
+  display: none;
+}

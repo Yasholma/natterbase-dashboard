@@ -1,0 +1,83 @@
+@import "../../../mixins/variables";
+@import "../../../mixins/transitions";
+
+.mobile-nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 0;
+  width: 0;
+  z-index: 1002;
+  background: $sidebarBgColor;
+  color: $whiteColor;
+  @include transition(all 0.3s ease-in);
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  display: flex;
+  justify-content: center;
+  visibility: hidden;
+
+  &.active {
+    visibility: visible;
+    height: 100vh;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  &__content {
+    width: calc(100vw - 180px);
+    height: 100%;
+    padding: 5rem 0 0rem 2rem;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__search__input {
+      border: none;
+      font-family: "Nunito Sans", sans-serif;
+      font-weight: 400;
+      background: transparent;
+      color: $whiteColor;
+      border-bottom: 1px solid #fff;
+
+      @include transition(all 0.3s ease);
+      &::placeholder {
+        font-weight: 600;
+        color: $whiteColor;
+      }
+
+      &:focus {
+        border: none;
+        outline: none;
+        border-bottom: 1px solid #fff;
+      }
+    }
+
+    &__status,
+    &__verified {
+      margin: 0 auto;
+      .icon {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    &__account__profile {
+      margin-top: 2rem;
+    }
+  }
+
+  .search-icon {
+    path {
+      stroke: $whiteColor;
+    }
+  }
+
+  .navbar__account__img {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+  }
+}

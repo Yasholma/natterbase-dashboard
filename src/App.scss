@@ -1,0 +1,270 @@
+@import "./mixins/variables";
+@import "./mixins/transitions";
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  max-width: 100%;
+  position: relative;
+}
+
+.content {
+  overflow-x: hidden;
+  margin-left: 6rem;
+  @include transition(all 0.3 ease);
+  width: calc(100vw - 150px);
+  position: relative;
+  min-height: 100vh;
+
+  &.expanded {
+    margin-left: 0;
+  }
+}
+
+.content__header {
+  display: flex;
+  background: $headerBgColor;
+  align-items: center;
+  padding: 1.8rem 0;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+}
+
+.sidebar__toggler {
+  margin-left: 2rem;
+  margin-right: 2rem;
+  cursor: pointer;
+  z-index: 1003;
+
+  &__item {
+    display: block;
+    height: 2px;
+    background: #03293d;
+    border-radius: 50px;
+    margin-bottom: 0.5rem;
+    @include transition(all 0.3s ease);
+
+    &:nth-child(1) {
+      width: 28px;
+    }
+    &:nth-child(2) {
+      width: 18px;
+    }
+    &:nth-child(3) {
+      width: 24px;
+      margin-bottom: 0;
+    }
+  }
+
+  //   Active
+  &.active {
+    .sidebar__toggler__item:nth-child(1) {
+      width: 30px;
+      transform: rotate(-45deg) translate(-14px, 5px);
+    }
+    .sidebar__toggler__item:nth-child(2) {
+      width: 0;
+      visibility: none;
+    }
+    .sidebar__toggler__item:nth-child(3) {
+      width: 30px;
+      transform: rotate(45deg) translate(-9px, 0px);
+    }
+  }
+}
+
+.mobile-menu__toggler {
+  position: fixed;
+  right: 1rem;
+  top: 1.6rem;
+  cursor: pointer;
+  z-index: 1003;
+  display: none;
+
+  &__item {
+    display: block;
+    height: 2px;
+    background: $skyBlue;
+    border-radius: 50px;
+    margin-bottom: 0.4rem;
+    @include transition(all 0.3s ease);
+
+    &:nth-child(1) {
+      width: 28px;
+    }
+    &:nth-child(2) {
+      width: 24px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    &:nth-child(3) {
+      width: 20px;
+      margin-bottom: 0;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  //   Active
+  &.active {
+    .mobile-menu__toggler__item:nth-child(1) {
+      width: 30px;
+      transform: rotate(-45deg) translate(-14px, 5px);
+    }
+    .mobile-menu__toggler__item:nth-child(2) {
+      width: 0;
+      visibility: none;
+    }
+    .mobile-menu__toggler__item:nth-child(3) {
+      width: 30px;
+      transform: rotate(45deg) translate(-9px, 0px);
+    }
+  }
+}
+
+.main {
+  width: 100%;
+  margin-top: 10rem;
+  margin-left: 6.5rem;
+}
+
+// Floating Button
+.floating-btn {
+  position: fixed;
+  width: 81px;
+  height: 81px;
+  border-radius: 50%;
+  padding: 1rem;
+  bottom: 5rem;
+  right: 3rem;
+  background: #23b3e8;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  color: $whiteColor;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  @include transition(all 0.3s ease);
+
+  &:hover {
+    transform: translateY(3px);
+    .icon {
+      transform: scale(1.1);
+    }
+  }
+
+  .icon {
+    width: 35px;
+    height: 35px;
+    @include transition(all 0.3s ease);
+    path {
+      fill: $whiteColor;
+    }
+  }
+}
+
+// ** Media Queries **
+@media screen and (max-width: 1400px) {
+  .content {
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .main {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1160px) {
+  .content {
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .main {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1114px) {
+  .mobile-menu__toggler {
+    display: block;
+  }
+
+  .content__header {
+    padding: 1.3rem 0;
+  }
+
+  // Floating Button
+  .floating-btn {
+    width: 25px;
+    height: 25px;
+    bottom: 2rem;
+    right: 1rem;
+
+    .icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+// Tablet
+@media screen and (max-width: 767px) {
+  .sidebar__toggler {
+    margin-left: 1rem;
+    margin-right: 0.5rem;
+  }
+
+  .content {
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .content__header {
+    padding: 1.3rem 0;
+  }
+
+  .main {
+    width: 100%;
+    margin-top: 6rem;
+    margin-left: 1.5rem;
+  }
+  // Floating Button
+  .floating-btn {
+    width: 25px;
+    height: 25px;
+    bottom: 2rem;
+    right: 1rem;
+
+    .icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+// Mobile
+@media screen and (max-width: 425px) {
+  .sidebar__toggler {
+    margin-left: 1rem;
+    margin-right: 0.5rem;
+  }
+
+  .content {
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .content__header {
+    padding: 1.3rem 0;
+  }
+
+  .main {
+    width: 100%;
+    margin-top: 6rem;
+    margin-left: 1.5rem;
+  }
+}

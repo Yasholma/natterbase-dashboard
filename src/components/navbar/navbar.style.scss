@@ -1,0 +1,232 @@
+@import "../../mixins/variables";
+@import "../../mixins/transitions";
+
+.navbar {
+  width: 85%;
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  //   Logo
+  &__logo {
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
+
+    .hide-md {
+      display: none;
+    }
+  }
+
+  //   Search
+  &__search {
+    margin-left: 2rem;
+    max-width: 200px;
+    form {
+      display: flex;
+      align-items: center;
+    }
+
+    &__icon {
+      margin-right: 0.6rem;
+      cursor: pointer;
+      @include transition(all 0.3s ease);
+      display: inline-block;
+
+      &:hover {
+        transform: scale(1.5);
+      }
+    }
+
+    &__input {
+      border: none;
+      font-family: "Nunito Sans", sans-serif;
+      font-weight: 400;
+      background: transparent;
+      @include transition(all 0.3s ease);
+      &::placeholder {
+        font-weight: 600;
+        color: rgba(45, 45, 45, 0.3);
+      }
+
+      &:focus {
+        border: none;
+        outline: none;
+        border-bottom: 1px solid #03293d;
+      }
+    }
+  }
+
+  //   Navbar Right {
+  &__right {
+    margin-left: auto;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    margin-right: 6rem;
+
+    .icon {
+      margin-right: 1rem;
+    }
+  }
+
+  //   Notiication
+  &__notification {
+    position: relative;
+    width: 30px;
+    margin-right: 1rem;
+    cursor: pointer;
+    @include transition(all 0.3s ease-in-out);
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &::after {
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      content: "";
+      background: #e13071;
+      right: 4px;
+      top: -3px;
+      border: 2px solid $whiteColor;
+    }
+  }
+
+  //   Account
+  &__account {
+    display: flex;
+    align-items: center;
+    // User Image
+    &__img {
+      width: 40px;
+      margin-right: 0.5rem;
+      max-width: 100%;
+      height: auto;
+    }
+
+    // User Profile
+    &__profile {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+      overflow: visible;
+
+      &:hover {
+        .dropdown {
+          visibility: visible;
+
+          * {
+            display: block;
+          }
+        }
+      }
+    }
+
+    // User Info
+    &__info {
+      display: flex;
+      flex-direction: column;
+      margin-right: 1rem;
+
+      &__name,
+      &__email {
+        margin: 0;
+      }
+      &__name {
+        font-size: 0.875rem;
+        font-family: $font;
+        font-weight: 600;
+      }
+
+      &__email {
+        font-size: 0.625rem;
+        color: $skyBlue;
+      }
+    }
+  }
+}
+
+// Dropdown
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 2.4rem;
+  background: $whiteColor;
+  width: 120px;
+  max-width: 200px;
+  border-radius: 10px;
+  box-shadow: 0 0 0.3rem rgba($color: $blue, $alpha: 0.3);
+  @include transition(all 0.2s ease);
+  visibility: hidden;
+
+  * {
+    display: none;
+  }
+
+  &__separator {
+    border: 0.5px solid #eee;
+  }
+
+  &__list__item {
+    margin-bottom: 0rem;
+  }
+
+  &__list__link {
+    padding: 0.5rem;
+    display: block;
+    font-size: 0.9rem;
+    font-family: $font;
+    @include transition(all 0.3s ease);
+
+    &:hover {
+      background: $sidebarBgColor;
+      color: $whiteColor;
+    }
+  }
+}
+
+// Utilities
+.read-more {
+  margin-top: 0.4rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+}
+
+.vertical-line {
+  width: 30px;
+  min-width: 30px;
+  height: 0px;
+  opacity: 0.1;
+  border: 1px solid #2d2d2d;
+  transform: rotate(90deg);
+}
+
+@media screen and (max-width: 1114px) {
+  .navbar {
+    &__logo {
+      .hide-sm {
+        display: none;
+      }
+
+      .hide-md {
+        display: block;
+      }
+    }
+
+    &__search,
+    &__status,
+    &__verified,
+    &__account,
+    .read-more,
+    .vertical-line {
+      display: none;
+    }
+  }
+}
